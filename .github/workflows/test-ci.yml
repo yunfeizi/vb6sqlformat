@@ -1,0 +1,21 @@
+name: Test CI Pipeline
+# 触发规则：只要push到main分支就自动执行
+on:
+  push:
+    branches: [ main ]
+
+# 运行环境：Ubuntu虚拟机
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    steps:
+      # 拉取当前仓库代码
+      - name: Checkout code
+        uses: actions/checkout@v4
+      # 打印系统信息、验证流水线启动成功
+      - name: Print test info
+        run: |
+          echo "✅ GitHub Action 流水线启动成功"
+          echo "当前仓库: $GITHUB_REPOSITORY"
+          echo "提交ID: $GITHUB_SHA"
+          ls -la
